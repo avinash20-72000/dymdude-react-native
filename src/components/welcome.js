@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity,Image} from 'react-native';
 import LottieView from 'lottie-react-native';
 
-const Welcome = () => {
+const Welcome = ({ navigation }) => {
 
   return (
     <>
@@ -17,12 +17,11 @@ const Welcome = () => {
         <View style={styles.contentContainer}>
           <Text style={styles.contentContainerText}>Join Our Community of Champions!</Text>
           <Text style={styles.contentContainerTextSmall}>Become part of a community that inspires, motivates, and pushes each other towards peak physical fitness.</Text>
-          {/* <Text style={styles.contentContainerTextSmall}>you can search and buy any event tickets as you wish</Text> */}
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress="" style={styles.signInButtonContainer}>
+            <TouchableOpacity onPress={() => navigation.navigate('SignIn')} style={styles.signInButtonContainer}>
               <Text style={styles.signInButtonText}>Sign In</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress="" style={styles.registerButtonContainer}>
+            <TouchableOpacity onPress={() => navigation.navigate('Register')} style={styles.registerButtonContainer}>
               <Text style={styles.registerButtonText}>Register</Text>
             </TouchableOpacity>
           </View>
@@ -49,8 +48,8 @@ const styles = StyleSheet.create({
   contentContainerText: {
     color: '#ffffff',
     fontSize: 26,
-    marginLeft: 20,
-    marginRight: 20,
+    // marginLeft: 20,
+    // marginRight: 20,
     // fontFamily: 'Playfair Display',
     textAlign: 'center',
     marginTop: 50,
@@ -104,11 +103,11 @@ const styles = StyleSheet.create({
   },
 
   image:{
-    top:'45.2%',
+    top:'39.1%',
     zIndex:9,
     height:'10%',
     width:'18%',
-    left:1,
+    left:0,
     position:'absolute'
   },
 
