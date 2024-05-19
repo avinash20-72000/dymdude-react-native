@@ -15,7 +15,7 @@ function SignIn({ navigation }) {
         <View style={styles.topContainer}>
 
           <View>
-            <AntDesign style={styles.backIconStyle} name="leftcircle" size={30} color="white" />
+            <AntDesign style={styles.backIconStyle} onPress={() => navigation.goBack()} name="leftcircle" size={30} color="white" />
           </View>
           <Text style={styles.headingText}>Welcome Back</Text>
           <Text style={styles.containerTextSmall}>Sign in to your account</Text>
@@ -65,11 +65,11 @@ function SignIn({ navigation }) {
           </View>
 
           <View style={styles.signInBuuttonContainer}>
-            <TouchableOpacity onPress={() => console.log('sign in')} style={styles.registerButtonContainer}>
-              <Text style={styles.registerButtonText}>Sign In</Text>
+            <TouchableOpacity onPress={() => console.log('sign in')} style={styles.signInButton}>
+              <Text style={styles.signInButtonText}>Sign In</Text>
             </TouchableOpacity>
-            <View>
-              <Text>I'm a new User</Text>
+            <View style={styles.registerTab}>
+              <Text style={{ right:5 }}>I'm a new user</Text>
               <TouchableOpacity onPress={() => console.log('register tab')}>
                 <Text style={{ color: 'blue' }}>Register</Text>
               </TouchableOpacity>
@@ -154,8 +154,6 @@ const styles = StyleSheet.create({
     right: 40
   },
 
-
-
   checkboxAndPasswordContainer: {
     flexDirection: 'row',
     left:10,
@@ -170,6 +168,32 @@ const styles = StyleSheet.create({
     left:70,
     color:'blue'
   },
+
+  signInBuuttonContainer:{
+    top:40,
+    alignItems:'center'
+  },
+
+  signInButton: {
+    backgroundColor: "#070321",
+    borderRadius: 10,
+    paddingVertical: 13,
+    borderWidth:2,
+    width: '93%',
+    alignItems:'center'
+  },
+
+  signInButtonText:{
+    color:'#ffffff',
+    fontWeight:'bold',
+    fontSize:16
+  },
+
+  registerTab:{
+    flexDirection: 'row',
+    marginTop:10
+  },
+
 });
 
 export default SignIn;
