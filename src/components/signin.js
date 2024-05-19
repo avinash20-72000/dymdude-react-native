@@ -70,7 +70,7 @@ function SignIn({ navigation }) {
             </TouchableOpacity>
             <View style={styles.registerTab}>
               <Text style={{ right:5 }}>I'm a new user</Text>
-              <TouchableOpacity onPress={() => console.log('register tab')}>
+              <TouchableOpacity onPress={() => navigation.navigate('Register')} >
                 <Text style={{ color: 'blue' }}>Register</Text>
               </TouchableOpacity>
             </View>
