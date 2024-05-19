@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, Dimensions, TextInput, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import Checkbox from 'expo-checkbox';
 
 function SignIn({ navigation }) {
@@ -11,46 +11,72 @@ function SignIn({ navigation }) {
   return (
     <>
       <View>
+
         <View style={styles.topContainer}>
-          <Icon style={styles.backIconStyle} name="arrow-back" size={30} color="#110C31" onPress={() => navigation.goBack()} />
+
+          <View>
+            <AntDesign style={styles.backIconStyle} name="leftcircle" size={30} color="white" />
+          </View>
           <Text style={styles.headingText}>Welcome Back</Text>
           <Text style={styles.containerTextSmall}>Sign in to your account</Text>
         </View>
+
         <View style={styles.bottomContainer}>
           <Text style={styles.signInText}>Sign In</Text>
-          <View style={styles.signInFormContainer}>
-            <Text style={styles.textLabel}>Your Email</Text>
-            <TextInput style={styles.input} onChangeText={setEmail} value={email} placeholder="Enter your email"
-              keyboardType="email-address"
-              autoCapitalize="none"
-            />
-            <Text style={styles.textLabel}>Password</Text>
-            <TextInput style={styles.input} onChangeText={setPassword} value={password} placeholder="Enter your password"
-              secureTextEntry={!passwordVisible}
-            />
-            <TouchableOpacity
-              style={styles.eyeIcon}
-              onPress={() => setPasswordVisible(!passwordVisible)}>
-              <Icon name={passwordVisible ? 'visibility' : 'visibility-off'} size={20} color="grey" />
-            </TouchableOpacity>
 
+          <View style={styles.signInFormContainer}>
+
+            <View style={styles.inputContainer}>
+              <Text style={styles.textLabel}>Your Email</Text>
+              <TextInput style={styles.input} onChangeText={setEmail} value={email} placeholder="Enter your email"
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <Text style={styles.textLabel}>Password</Text>
+              <TextInput position="relative" style={styles.input} onChangeText={setPassword} value={password} placeholder="Enter your password"
+                secureTextEntry={!passwordVisible}
+              />
+
+              <TouchableOpacity
+                style={styles.eyeIcon}
+                onPress={() => setPasswordVisible(!passwordVisible)}>
+                <View>
+                  <AntDesign  name={passwordVisible ? 'eye' : 'eyeo'} size={30} color="#110C31" />
+                </View>
+              </TouchableOpacity>
+            </View>
           </View>
 
           <View style={styles.checkboxAndPasswordContainer}>
-            <View style={styles.checkboxContainer}>
-              <Checkbox
-                value={rememberMe}
-                onValueChange={setRememberMe}
-                color={rememberMe ? '#110C31' : undefined}
-              />
-              <Text style={styles.rememberLabel}>Remember me</Text>
-            </View>
+            <Checkbox
+              value={rememberMe}
+              onValueChange={setRememberMe}
+              color={rememberMe ? '#110C31' : undefined}
+            />
+            <Text style={styles.rememberLabel}>Remember me</Text>
             <View style={styles.forgotPassword}>
               <TouchableOpacity onPress={() => console.log('Forgot Password?')}>
                 <Text style={styles.forgotPasswordText}>Forgot your password?</Text>
               </TouchableOpacity>
             </View>
           </View>
+
+          <View style={styles.signInBuuttonContainer}>
+            <TouchableOpacity onPress={() => console.log('sign in')} style={styles.registerButtonContainer}>
+              <Text style={styles.registerButtonText}>Sign In</Text>
+            </TouchableOpacity>
+            <View>
+              <Text>I'm a new User</Text>
+              <TouchableOpacity onPress={() => console.log('register tab')}>
+                <Text style={{ color: 'blue' }}>Register</Text>
+              </TouchableOpacity>
+            </View>
+
+          </View>
+
         </View>
       </View>
     </>
@@ -60,8 +86,15 @@ function SignIn({ navigation }) {
 const styles = StyleSheet.create({
   topContainer: {
     width: Dimensions.get('window').height * 0.5,
-    height: Dimensions.get('window').height * 0.4,
+    height: Dimensions.get('window').height * 0.3,
     backgroundColor: '#110C31',
+    marginBottom:4.5 
+  },
+
+  backIconStyle: {
+    top: 40,
+    left:20,
+    marginBottom: 40,
   },
 
   bottomContainer: {
@@ -70,51 +103,43 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderTopRightRadius: 65,
     borderTopLeftRadius: 65,
-    position: 'absolute',
-    top: '65%',
-    left: 0
+    zIndex: 10,
+    minHeight: '100%',
+    borderTopLeftRadius:65,
+    padding: 20,
+    paddingTop: 35,
+    marginTop: -60, 
   },
 
-  headingText: {
-    color: '#ffffff',
-    fontSize: 26,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 70,
+  headingText:{
+    color:'#ffffff',
+    fontSize:26,
+    fontWeight:'bold',
+    textAlign:'center'
   },
 
-  containerTextSmall: {
-    color: '#ffffff',
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 20,
+  containerTextSmall:{
+    color:'#ffffff',
+    fontSize:12,
+    textAlign:'center',
+    marginTop:10
   },
-
-  backIconStyle: {
-    backgroundColor: '#ffffff',
-    height: 35,
-    width: 35,
-    borderRadius: 50,
-    position: 'absolute',
-    top: 30,
-    left: 20
-  },
-
+  
   signInText: {
     color: '#110C31',
-    fontSize: 26,
+    fontSize: 24,
+    top:10,
+    left:10,
     fontWeight: 'bold',
-    top: 50,
-    left: 30,
   },
 
   signInFormContainer: {
-    alignItems: 'center',
-    top: 60,
+    left:10,
+    marginTop:25
   },
 
   input: {
-    width: '85%',
+    width: '93%',
     marginVertical: 10,
     padding: 10,
     borderWidth: 1,
@@ -123,31 +148,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#E9E9F2',
   },
 
-  textLabel: {
-    fontSize: 12,
-    right: 136
-  },
-
   eyeIcon: {
     position: 'absolute',
-    top: 128,
+    top: 40,
     right: 40
   },
 
-  checkboxAndPasswordContainer:{
-    flexDirection:'row',
-    justifyContent: 'space-between',
-    position:'relative',
-    top:70
-  },
 
-  checkboxContainer: {
+
+  checkboxAndPasswordContainer: {
     flexDirection: 'row',
-    left:34,
+    left:10,
+    top: 5
   },
 
-  rememberLabel:{
-    left:10,
+  rememberLabel: {
+    left: 5,
+  },
+
+  forgotPasswordText: {
+    left:70,
+    color:'blue'
   },
 });
 
