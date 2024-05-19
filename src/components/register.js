@@ -62,7 +62,7 @@ function Register({ navigation }) {
               onValueChange={setTermAndCondition}
               color={termAndCondition ? '#110C31' : undefined}
             />
-            <Text style={styles.termAndConditionStyle}>I agree to the Term & Conditions and 
+            <Text style={styles.termAndConditionStyle}>I agree to the Term & Conditions {'\n'} and 
             Privacy Policy</Text>
           </View>
 
@@ -164,10 +164,11 @@ const styles = StyleSheet.create({
 
   termAndConditionStyle:{
     left:5,
+    fontSize:12
   },
 
   signUpButtonContainer:{
-    top:40,
+    top:30,
     alignItems:'center'
   },
 
